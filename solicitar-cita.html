@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solicitar cita - Veterinaria San Marcos</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+ 
+  <header>
+    <div class="logo">🐾 Veterinaria San Marcos</div>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+    <label for="nav-toggle" class="nav-toggle-label">☰</label>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="solicitar-cita.html">Solicitar cita</a></li>
+        <li><a href="mis-citas.html">Mis citas</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+      </ul>
+    </nav>
+  </header>
+ 
+  <main>
+    <section>
+      <h1>Solicitar una cita</h1>
+      <p>Completa el formulario y la recepcionista confirmará tu hora a la brevedad.</p>
+ 
+      <form id="form-cita" novalidate>
+ 
+        <div class="form-group">
+          <label for="nombre-dueno">Nombre del dueño/a</label>
+          <input type="text" id="nombre-dueno" name="nombre-dueno" autocomplete="name" required minlength="3" />
+          <span class="error-msg" id="error-nombre-dueno"></span>
+        </div>
+ 
+        <div class="form-group">
+          <label for="telefono">Teléfono de contacto</label>
+          <input type="tel" id="telefono" name="telefono" autocomplete="tel" placeholder="+56 9 1234 5678" required />
+          <span class="error-msg" id="error-telefono"></span>
+        </div>
+ 
+        <div class="form-group">
+          <label for="nombre-mascota">Nombre de la mascota</label>
+          <input type="text" id="nombre-mascota" name="nombre-mascota" required minlength="2" />
+          <span class="error-msg" id="error-nombre-mascota"></span>
+        </div>
+ 
+        <div class="form-group">
+          <label for="especie">Especie</label>
+          <select id="especie" name="especie" required>
+            <option value="">Selecciona una especie</option>
+            <option value="perro">Perro</option>
+            <option value="gato">Gato</option>
+            <option value="conejo">Conejo</option>
+            <option value="ave">Ave</option>
+          </select>
+          <span class="error-msg" id="error-especie"></span>
+        </div>
+ 
+        <div class="form-group">
+          <label for="servicio">Servicio solicitado</label>
+          <input list="lista-servicios" id="servicio" name="servicio" placeholder="Escribe o elige un servicio" required />
+          <datalist id="lista-servicios">
+            <option value="Consulta general"></option>
+            <option value="Consulta urgencia"></option>
+            <option value="Control postoperatorio"></option>
+            <option value="Vacuna antirrábica canina"></option>
+            <option value="Vacuna sextuple canina"></option>
+            <option value="Esterilización hembra canina"></option>
+            <option value="Esterilización macho canino"></option>
+            <option value="Desparasitación interna"></option>
+            <option value="Hemograma completo"></option>
+            <option value="Limpieza dental"></option>
+          </datalist>
+          <span class="error-msg" id="error-servicio"></span>
+        </div>
+ 
+        <div class="form-group">
+          <label for="fecha">Fecha preferida</label>
+          <input type="date" id="fecha" name="fecha" required />
+          <span class="error-msg" id="error-fecha"></span>
+        </div>
+ 
+        <div class="form-group">
+          <label for="hora">Hora preferida</label>
+          <input type="time" id="hora" name="hora" required />
+          <span class="error-msg" id="error-hora"></span>
+        </div>
+ 
+        <div class="form-group">
+          <label for="motivo">Motivo de la consulta (opcional)</label>
+          <textarea id="motivo" name="motivo" rows="3"></textarea>
+        </div>
+ 
+        <button type="submit" class="btn">Enviar solicitud</button>
+        <p id="mensaje-exito" class="error-msg" style="color: #2f7a5c; display:none;">
+          ¡Solicitud enviada! La recepcionista te confirmará pronto.
+        </p>
+      </form>
+    </section>
+  </main>
+ 
+  <footer>
+    <p>Veterinaria San Marcos &middot; Rancagua &middot; contacto@sanmarcosvet.cl &middot; +56 9 0000 0000</p>
+  </footer>
+ 
+  <script src="js/validaciones.js"></script>
+</body>
+</html>
