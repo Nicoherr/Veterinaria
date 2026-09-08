@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Veterinaria San Marcos</title>
+
+  <!-- Estilos CSS de Leaflet (Mapa Interactivo) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  
+  <!-- Hoja de estilos de la página -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -19,48 +24,59 @@
         <li><a href="solicitar-cita.html">Solicitar cita</a></li>
         <li><a href="mis-citas.html">Mis citas</a></li>
         <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="login.html">Ingresar</a></li>
+        <li><a href="registro.html">Crear cuenta</a></li>
+        <!-- Botón de Modo Oscuro -->
+        <li><button id="btn-dark-mode" class="btn-theme" title="Cambiar tema">🌙</button></li>
       </ul>
     </nav>
   </header>
  
   <main>
+    <!-- Seccion Hero con diseño Split en 2 columnas -->
     <section class="hero">
-      <h1>Cuidamos a tu mascota como parte de la familia</h1>
-      <p>Consultas, vacunación, cirugía y más — en Rancagua desde 2009.</p>
-      <a class="btn" href="solicitar-cita.html">Solicitar una cita</a>
+      <div class="hero-texto">
+        <h1>Cuidamos a tu mascota como parte de la familia 🐶🐱</h1>
+        <p>Consultas, vacunación, cirugía y más — en Rancagua desde 2009.</p>
+        <a class="btn" href="solicitar-cita.html" style="margin-top: 1rem;">Solicitar una cita</a>
+      </div>
+      <div class="hero-imagen">
+        <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&q=80&w=800" alt="Mascotas felices en consulta veterinaria" />
+      </div>
     </section>
  
     <section id="video-institucional">
       <h2>Conócenos</h2>
       <article class="card">
         <p>Un breve video institucional de la clínica:</p>
-        <video controls width="100%" poster="img/video-poster.jpg">
+        <video controls width="100%" poster="img/video-poster.jpg" style="border-radius: 8px; margin-top: 1rem;">
           <source src="img/institucional.mp4" type="video/mp4" />
           Tu navegador no soporta el elemento de video.
         </video>
       </article>
     </section>
  
+    <!-- Servicios destacados vinculados a tus imágenes locales -->
     <section id="destacados">
       <h2>Servicios destacados</h2>
       <div class="card-grid">
         <article class="card">
-          <img src="img/consulta.jpg" alt="Consulta veterinaria general" width="100%" />
+          <img src="img/consulta.jpg" alt="Consulta veterinaria general" width="100%" height="180" style="object-fit: cover; border-radius: 12px; margin-bottom: 1rem;" />
           <h3>Consulta general</h3>
           <p>Revisión completa para perros y gatos. Desde $15.000.</p>
-          <a href="servicios.html">Ver detalle</a>
+          <a class="btn" href="servicios.html" style="margin-top: auto;">Ver detalle</a>
         </article>
         <article class="card">
-          <img src="img/vacunacion.jpg" alt="Vacunación de mascotas" width="100%" />
+          <img src="img/vacunacion.jpg" alt="Vacunación de mascotas" width="100%" height="180" style="object-fit: cover; border-radius: 12px; margin-bottom: 1rem;" />
           <h3>Vacunación</h3>
           <p>Antirrábica, sextuple y más, con refuerzo anual.</p>
-          <a href="servicios.html">Ver detalle</a>
+          <a class="btn" href="servicios.html" style="margin-top: auto;">Ver detalle</a>
         </article>
         <article class="card">
-          <img src="img/cirugia.jpg" alt="Cirugía veterinaria" width="100%" />
+          <img src="img/cirugia.jpg" alt="Cirugía veterinaria" width="100%" height="180" style="object-fit: cover; border-radius: 12px; margin-bottom: 1rem;" />
           <h3>Cirugía</h3>
           <p>Esterilizaciones y procedimientos menores con anestesia.</p>
-          <a href="servicios.html">Ver detalle</a>
+          <a class="btn" href="servicios.html" style="margin-top: auto;">Ver detalle</a>
         </article>
       </div>
     </section>
@@ -69,8 +85,8 @@
       <h2>Ubicación</h2>
       <article class="card">
         <p>Rancagua, Región del Libertador General Bernardo O'Higgins.</p>
-        <!-- Mapa interactivo (Leaflet/Google Maps) se integrará en una etapa posterior del proyecto -->
-        <img src="img/mapa-referencial.jpg" alt="Mapa referencial de ubicación de la clínica" width="100%" />
+        <!-- Contenedor para el Mapa Interactivo de Leaflet -->
+        <div id="mapa" style="height: 380px; width: 100%; border-radius: 8px; margin-top: 1rem; z-index: 1;"></div>
       </article>
     </section>
   </main>
@@ -79,5 +95,43 @@
     <p>Veterinaria San Marcos &middot; Rancagua &middot; contacto@sanmarcosvet.cl &middot; +56 9 0000 0000</p>
   </footer>
  
+  <!-- Script JS de Leaflet (Mapa Interactivo) -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Script de Inicialización del Mapa y Modo Oscuro -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Inicializar Mapa
+      const mapaDiv = document.getElementById("mapa");
+      if (mapaDiv) {
+        const lat = -34.17013;
+        const lng = -70.74075;
+
+        const map = L.map('mapa').setView([lat, lng], 15);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        L.marker([lat, lng]).addTo(map)
+          .bindPopup('<b>🐾 Veterinaria San Marcos</b><br>Rancagua')
+          .openPopup();
+      }
+
+      // 2. Lógica del Modo Oscuro
+      const btnDarkMode = document.getElementById("btn-dark-mode");
+      if (btnDarkMode) {
+        btnDarkMode.addEventListener("click", () => {
+          document.body.classList.toggle("dark-mode");
+          if (document.body.classList.contains("dark-mode")) {
+            btnDarkMode.textContent = "☀️";
+          } else {
+            btnDarkMode.textContent = "🌙";
+          }
+        });
+      }
+    });
+  </script>
+
 </body>
 </html>

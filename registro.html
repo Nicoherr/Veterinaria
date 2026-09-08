@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crear cuenta - Veterinaria San Marcos</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+ 
+  <header>
+    <div class="logo">🐾 Veterinaria San Marcos</div>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+    <label for="nav-toggle" class="nav-toggle-label">☰</label>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="solicitar-cita.html">Solicitar cita</a></li>
+        <li><a href="mis-citas.html">Mis citas</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="login.html">Ingresar</a></li>
+        <li><a href="registro.html">Crear cuenta</a></li>
+      </ul>
+    </nav>
+  </header>
+ 
+  <main>
+    <section class="form-contenedor">
+      <h2>Crear una Cuenta</h2>
+      <form action="#" method="POST" class="form-auth">
+        <div class="form-grupo">
+          <label for="nombre">Nombre completo:</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Tu nombre y apellido" required />
+        </div>
+
+        <div class="form-grupo">
+          <label for="email">Correo electrónico:</label>
+          <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required />
+        </div>
+
+        <div class="form-grupo">
+          <label for="telefono">Teléfono:</label>
+          <input type="tel" id="telefono" name="telefono" placeholder="+56 9 1234 5678" required />
+        </div>
+
+        <div class="form-grupo">
+          <label for="password">Contraseña:</label>
+          <input type="password" id="password" name="password" placeholder="Crea una contraseña segura" required />
+        </div>
+
+        <button type="submit" class="btn">Registrarse</button>
+      </form>
+      <p class="form-pie">¿Ya tienes una cuenta? <a href="login.html">Ingresa aquí</a></p>
+    </section>
+  </main>
+ 
+  <footer>
+    <p>Veterinaria San Marcos &middot; Rancagua &middot; contacto@sanmarcosvet.cl &middot; +56 9 0000 0000</p>
+  </footer>
+ 
+</body>
+</html>

@@ -1,253 +1,264 @@
-/* ===========================================================
-   Veterinaria San Marcos - Hoja de estilos externa
-   =========================================================== */
- 
+/* ---------- Variables Globales ---------- */
 :root {
-  --color-primario: #2f7a5c;
-  --color-primario-oscuro: #1f5a41;
-  --color-secundario: #f2b134;
-  --color-texto: #2b2b2b;
-  --color-fondo: #fbfaf7;
-  --color-borde: #d9d3c7;
-  --color-error: #c0392b;
-  --radio: 10px;
-  --sombra: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --color-primario: #1e4d3b;
+  --color-secundario: #2c6e55;
+  --color-fondo: #f4f7f6;
+  --color-blanco: #ffffff;
+  --color-texto: #333333;
+  --color-texto-suave: #666666;
+  --color-borde: #e0e0e0;
+  --sombra-tarjeta: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --radio-borde: 12px;
+  --transicion: all 0.3s ease;
 }
- 
+
+/* ---------- Modo Oscuro ---------- */
+body.dark-mode {
+  --color-fondo: #121212;
+  --color-blanco: #1e1e1e;
+  --color-texto: #e0e0e0;
+  --color-texto-suave: #aaaaaa;
+  --color-borde: #333333;
+  --sombra-tarjeta: 0 4px 12px rgba(0, 0, 0, 0.4);
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+}
+
+body.dark-mode header {
+  background-color: #0d2b20;
+}
+
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3,
+body.dark-mode caption {
+  color: #ffffff;
+}
+
+body.dark-mode th {
+  background-color: #2a2a2a;
+  color: #ffffff;
+}
+
+body.dark-mode tbody tr:hover {
+  background-color: #252525;
+}
+
+body.dark-mode input {
+  background-color: #2a2a2a;
+  color: #ffffff;
+  border-color: #444444;
+}
+
+/* ---------- Estilos Generales ---------- */
 * {
   box-sizing: border-box;
-}
- 
-body {
-  margin: 0;
-  font-family: "Segoe UI", Arial, sans-serif;
-  color: var(--color-texto);
-  background-color: var(--color-fondo);
-  line-height: 1.5;
-}
- 
-/* ---------- Header / Nav ---------- */
-header {
-  background-color: var(--color-primario);
-  color: #fff;
-  padding: 0.75rem 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
- 
-header .logo {
-  font-size: 1.3rem;
-  font-weight: bold;
-}
- 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 1.2rem;
   margin: 0;
   padding: 0;
-  flex-wrap: wrap;
 }
- 
-nav a {
-  color: #fff;
+
+body {
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6;
+}
+
+/* ---------- Header y Navegación ---------- */
+header {
+  background-color: var(--color-primario);
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.nav-toggle, .nav-toggle-label {
+  display: none;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+  align-items: center;
+}
+
+nav ul li a {
+  color: white;
   text-decoration: none;
   font-weight: 500;
+  font-size: 0.9rem;
+  white-space: nowrap; /* Evita que el texto se rompa en 2 filas */
+  transition: var(--transicion);
+  padding: 0.3rem 0.5rem;
 }
- 
-nav a:hover,
-nav a:focus {
-  text-decoration: underline;
+
+nav ul li a:hover {
+  opacity: 0.8;
 }
- 
-/* Menú hamburguesa (móvil) */
-.nav-toggle {
-  display: none;
-}
- 
-.nav-toggle-label {
-  display: none;
+
+/* Botón de Modo Oscuro */
+.btn-theme {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  font-size: 1.1rem;
   cursor: pointer;
-  font-size: 1.6rem;
-  color: #fff;
+  padding: 0.4rem 0.6rem;
+  border-radius: 50%;
+  transition: var(--transicion);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
- 
-@media (max-width: 720px) {
-  .nav-toggle-label {
-    display: block;
-  }
- 
-  nav ul {
-    display: none;
-    width: 100%;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 0.75rem;
-  }
- 
-  .nav-toggle:checked ~ ul {
-    display: flex;
-  }
+
+.btn-theme:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
 }
- 
-/* ---------- Main / Hero ---------- */
+
+/* ---------- Main y Contenido ---------- */
 main {
   max-width: 1100px;
-  margin: 0 auto;
-  padding: 1.5rem;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
 }
- 
-.hero {
-  background: linear-gradient(135deg, var(--color-primario), var(--color-primario-oscuro));
-  color: #fff;
-  border-radius: var(--radio);
-  padding: 2.5rem 1.5rem;
-  text-align: center;
-  margin-bottom: 2rem;
-}
- 
-.hero h1 {
-  margin-top: 0;
-  font-size: 2rem;
-}
- 
+
 .btn {
   display: inline-block;
-  background-color: var(--color-secundario);
-  color: var(--color-texto);
-  padding: 0.7rem 1.4rem;
-  border-radius: var(--radio);
+  background-color: var(--color-primario);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
   border: none;
   cursor: pointer;
+  transition: var(--transicion);
 }
- 
+
 .btn:hover {
-  opacity: 0.9;
+  background-color: var(--color-secundario);
 }
- 
-/* ---------- Secciones / Cards ---------- */
-section {
+
+/* ---------- Hero Section ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  background-color: var(--color-blanco);
+  padding: 2.5rem;
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra-tarjeta);
   margin-bottom: 2.5rem;
 }
- 
+
+.hero-imagen img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: var(--radio-borde);
+}
+
+/* ---------- Tarjetas y Grillas ---------- */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
 }
- 
-article.card {
-  background-color: #fff;
+
+.card, main section {
+  background-color: var(--color-blanco);
   border: 1px solid var(--color-borde);
-  border-radius: var(--radio);
-  padding: 1rem;
-  box-shadow: var(--sombra);
-}
- 
-article.card h3 {
-  margin-top: 0;
-  color: var(--color-primario-oscuro);
-}
- 
-/* ---------- Tablas (catálogo de servicios) ---------- */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: #fff;
-  border-radius: var(--radio);
-  overflow: hidden;
-  box-shadow: var(--sombra);
-}
- 
-caption {
-  text-align: left;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
- 
-th,
-td {
-  padding: 0.6rem 0.8rem;
-  border-bottom: 1px solid var(--color-borde);
-  text-align: left;
-}
- 
-th {
-  background-color: var(--color-primario);
-  color: #fff;
-}
- 
-/* ---------- Formularios ---------- */
-form {
-  background-color: #fff;
-  border: 1px solid var(--color-borde);
-  border-radius: var(--radio);
+  border-radius: var(--radio-borde);
   padding: 1.5rem;
-  max-width: 600px;
-  box-shadow: var(--sombra);
-}
- 
-.form-group {
-  margin-bottom: 1.1rem;
+  box-shadow: var(--sombra-tarjeta);
+  margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
 }
- 
-label {
+
+/* ---------- Tablas ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+}
+
+caption {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-primario);
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+th {
+  background-color: #f1f5f3;
+  color: var(--color-primario);
   font-weight: 600;
-  margin-bottom: 0.3rem;
+  text-align: left;
+  padding: 0.8rem 1rem;
 }
- 
-input,
-select,
-textarea {
-  padding: 0.55rem;
+
+td {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+tbody tr:hover {
+  background-color: #f8faf9;
+}
+
+/* ---------- Formularios ---------- */
+.form-contenedor {
+  max-width: 450px;
+  margin: 2rem auto;
+}
+
+.form-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.form-grupo label {
+  font-weight: 500;
+}
+
+.form-grupo input {
+  padding: 0.75rem 1rem;
   border: 1px solid var(--color-borde);
-  border-radius: 6px;
-  font-size: 1rem;
+  border-radius: 8px;
+  font-family: inherit;
+  outline: none;
 }
- 
-input:focus,
-select:focus,
-textarea:focus {
-  outline: 2px solid var(--color-primario);
+
+.form-pie {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
 }
- 
-.error-msg {
-  color: var(--color-error);
-  font-size: 0.85rem;
-  margin-top: 0.25rem;
-  min-height: 1.1em;
-}
- 
-input.invalido,
-select.invalido {
-  border-color: var(--color-error);
-}
- 
+
 /* ---------- Footer ---------- */
 footer {
-  background-color: var(--color-primario-oscuro);
-  color: #fff;
   text-align: center;
-  padding: 1.2rem;
-  margin-top: 2rem;
+  padding: 2rem;
+  background-color: var(--color-primario);
+  color: white;
+  margin-top: 3rem;
 }
- 
-/* ---------- Responsive breakpoints requeridos ---------- */
-@media (min-width: 768px) {
-  .hero h1 {
-    font-size: 2.4rem;
-  }
-}
- 
-@media (min-width: 1280px) {
-  main {
-    padding: 2rem 0;
-  }
-}
- 
