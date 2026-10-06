@@ -1,26 +1,36 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+// Importación de componentes
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Citas from './pages/Citas';
-import FichaClinica from './pages/FichaClinica';
 import MisMascotas from './pages/MisMascotas';
-import Nosotros from './pages/Nosotros';
+import FichaClinica from './pages/FichaClinica';
 
 function App() {
+  // Simulación de sesión (cambiar a true para ver Mis Mascotas y Ficha Clínica)
+  const [usuarioAutenticado, setUsuarioAutenticado] = useState(true);
+
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/nosotros" element={<Nosotros />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/citas" element={<Citas />} />
-        <Route path="/ficha-clinica" element={<FichaClinica />} />
-        <Route path="/mis-mascotas" element={<MisMascotas />} />
-      </Routes>
-    </Router>
+    <BrowserRouter>
+      <div style={{ backgroundColor: '#181513', minHeight: '100vh', color: '#e5e7eb' }}>
+        <Navbar 
+          usuarioAutenticado={usuarioAutenticado} 
+          setUsuarioAutenticado={setUsuarioAutenticado} 
+        />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login setUsuarioAutenticado={setUsuarioAutenticado} />} />
+          <Route path="/citas" element={<Citas />} />
+          <Route path="/mismascotas" element={<MisMascotas />} />
+          <Route path="/fichaclinica" element={<FichaClinica />} />
+          {/* Ruta por si escriben cualquier otra dirección */}
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
