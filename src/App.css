@@ -1,0 +1,54 @@
+:root {
+  /* Paleta Tonos Piel y Blanco (Modo Claro) */
+  --bg-primary: #FAF7F2;          /* Blanco cálido / Hueso */
+  --bg-card: #FFFFFF;             /* Blanco puro */
+  --text-color: #4A3E3D;          /* Marrón suave / Oscuro neutro */
+  --accent-skin: #E8C5B0;         /* Tono piel / Rosa pálido */
+  --accent-skin-hover: #D4A890;   /* Tono piel oscuro al hover */
+  --border-color: #E2D7CE;
+}
+
+/* Modo Oscuro */
+body.dark-mode {
+  --bg-primary: #1E1B18;          /* Fondo oscuro cálido */
+  --bg-card: #2B2623;             /* Tarjetas oscuras */
+  --text-color: #F3EAE3;          /* Texto claro */
+  --accent-skin: #C89678;         /* Tono piel adaptado */
+  --accent-skin-hover: #B28062;
+  --border-color: #443B35;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+  font-family: Arial, sans-serif;
+}
+
+.card {
+  background-color: var(--bg-card) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.form-control, .form-select {
+  background-color: var(--bg-card) !important;
+  color: var(--text-color) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Botón estilo Tono Piel */
+.btn-skin {
+  background-color: var(--accent-skin);
+  color: #332722;
+  border: none;
+}
+
+.btn-skin:hover {
+  background-color: var(--accent-skin-hover);
+  color: #1F1714;
+}
+
+.text-primary-custom {
+  color: #A36B51;
+}
