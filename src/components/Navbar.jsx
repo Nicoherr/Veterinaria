@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const Navbar = ({ usuarioAutenticado, setUsuarioAutenticado, modoOscuro, toggleModoOscuro }) => {
+const Navbar = ({ modoOscuro, toggleModoOscuro }) => {
   const navigate = useNavigate();
+  const usuario = localStorage.getItem('usuario');
 
   const handleLogout = () => {
     localStorage.removeItem('usuario');
-    if (setUsuarioAutenticado) setUsuarioAutenticado(false);
     navigate('/');
   };
 
@@ -16,74 +16,51 @@ const Navbar = ({ usuarioAutenticado, setUsuarioAutenticado, modoOscuro, toggleM
       justifyContent: 'space-between',
       alignItems: 'center',
       padding: '0.8rem 2rem',
-      backgroundColor: modoOscuro ? '#1e293b' : '#1e3a8a',
-      color: '#ffffff',
-      boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+      backgroundColor: modoOscuro ? '#0f172a' : '#ffffff',
+      borderBottom: `1px solid ${modoOscuro ? '#1e293b' : '#e2e8f0'}`,
       transition: 'background-color 0.3s ease'
     }}>
-      <div style={{ fontWeight: 700, fontSize: '1.2rem' }}>
-        <Link to="/" style={{ color: '#ffffff', textDecoration: 'none' }}>
-          VetSM
-        </Link>
-      </div>
+      <Link to="/" style={{ textDecoration: 'none', color: modoOscuro ? '#ffffff' : '#0f172a', fontWeight: 800, fontSize: '1.25rem' }}>
+        VetSM
+      </Link>
 
-      <div style={{ display: 'flex', gap: '1.2rem', alignItems: 'center' }}>
-        <Link to="/" style={{ color: '#ffffff', textDecoration: 'none' }}>Inicio</Link>
-        <Link to="/nosotros" style={{ color: '#ffffff', textDecoration: 'none' }}>Nosotros</Link>
-
-        {usuarioAutenticado && (
+      <div style={{ display: 'flex', gap: '1.25rem', alignItems: 'center' }}>
+        <Link to="/" style={{ color: modoOscuro ? '#cbd5e1' : '#475569', textDecoration: 'none', fontWeight: 500, fontSize: '0.9rem' }}>Inicio</Link>
+        <Link to="/nosotros" style={{ color: modoOscuro ? '#cbd5e1' : '#475569', textDecoration: 'none', fontWeight: 500, fontSize: '0.9rem' }}>Nosotros</Link>
+        <Link to="/servicios" style={{ color: modoOscuro ? '#cbd5e1' : '#475569', textDecoration: 'none', fontWeight: 500, fontSize: '0.9rem' }}>Servicios</Link>
+        <Link to="/contacto" style={{ color: modoOscuro ? '#cbd5e1' : '#475569', textDecoration: 'none', fontWeight: 500, fontSize: '0.9rem' }}>Contacto</Link>
+        
+        {usuario && (
           <>
-            <Link to="/mismascotas" style={{ color: '#ffffff', textDecoration: 'none' }}>Mis Mascotas</Link>
-            <Link to="/citas" style={{ color: '#ffffff', textDecoration: 'none' }}>Agendar Cita</Link>
+            <Link to="/mismascotas" style={{ color: modoOscuro ? '#cbd5e1' : '#475569', textDecoration: 'none', fontWeight: 500, fontSize: '0.9rem' }}>Mis Mascotas</Link>
+            <Link to="/citas" style={{ color: modoOscuro ? '#cbd5e1' : '#475569', textDecoration: 'none', fontWeight: 500, fontSize: '0.9rem' }}>Agendar Cita</Link>
           </>
         )}
 
-        {/* Botón de Conmutación de Modo Oscuro */}
         <button
           onClick={toggleModoOscuro}
-          title="Cambiar Modo Oscuro / Claro"
           style={{
-            background: 'transparent',
-            border: '1px solid rgba(255, 255, 255, 0.3)',
-            color: '#ffffff',
-            padding: '0.35rem 0.6rem',
-            borderRadius: '20px',
+            background: modoOscuro ? '#1e293b' : '#f1f5f9',
+            border: 'none',
+            borderRadius: '50%',
+            width: '36px',
+            height: '36px',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
-            fontSize: '1rem'
+            justifyContent: 'center',
+            fontSize: '1.1rem'
           }}
         >
           {modoOscuro ? '☀️' : '🌙'}
         </button>
 
-        {usuarioAutenticado ? (
-          <button
-            onClick={handleLogout}
-            style={{
-              backgroundColor: '#dc2626',
-              color: '#ffffff',
-              border: 'none',
-              padding: '0.4rem 0.8rem',
-              borderRadius: '6px',
-              cursor: 'pointer',
-              fontWeight: 600
-            }}
-          >
+        {usuario ? (
+          <button onClick={handleLogout} style={{ backgroundColor: '#dc2626', color: '#fff', border: 'none', padding: '0.4rem 0.8rem', borderRadius: '6px', cursor: 'pointer' }}>
             Cerrar Sesión
           </button>
         ) : (
-          <Link
-            to="/login"
-            style={{
-              backgroundColor: '#ffffff',
-              color: '#1e3a8a',
-              padding: '0.4rem 0.9rem',
-              borderRadius: '6px',
-              textDecoration: 'none',
-              fontWeight: 600
-            }}
-          >
+          <Link to="/login" style={{ backgroundColor: '#1e3a8a', color: '#ffffff', padding: '0.5rem 1rem', borderRadius: '8px', textDecoration: 'none', fontWeight: 600, fontSize: '0.85rem' }}>
             Iniciar Sesión
           </Link>
         )}
