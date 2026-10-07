@@ -1,19 +1,18 @@
-import { validarRut, validarTelefono } from './validaciones.js';
+// Validar RUT chileno simple (o formato genérico)
+export const validarRut = (rut) => {
+  if (!rut) return false;
+  const cleanRut = rut.replace(/[^0-9kK]/g, '');
+  return cleanRut.length >= 8 && cleanRut.length <= 9;
+};
 
-describe('Pruebas del módulo de validaciones VetSM', () => {
-  it('Debe validar un RUT chileno correcto con guion', () => {
-    expect(validarRut('12345678-K')).toBeTrue();
-  });
+// Validar campos requeridos en formularios
+export const validarCampoRequerido = (valor) => {
+  return valor !== null && valor !== undefined && valor.toString().trim() !== '';
+};
 
-  it('Debe rechazar un RUT sin formato válido', () => {
-    expect(validarRut('12345678')).toBeFalse();
-  });
-
-  it('Debe validar un teléfono chileno de 9 dígitos', () => {
-    expect(validarTelefono('912345678')).toBeTrue();
-  });
-
-  it('Debe rechazar un teléfono con menos o más de 9 dígitos', () => {
-    expect(validarTelefono('12345')).toBeFalse();
-  });
-});
+// Validar fecha futura para citas
+export const validarFechaCita = (fechaStr) => {
+  const fecha = new Date(fechaStr);
+  const hoy = new Date();
+  return fecha >= hoy;
+};

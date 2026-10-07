@@ -1,93 +1,91 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const Navbar = ({ usuarioAutenticado, setUsuarioAutenticado }) => {
+const Navbar = ({ usuarioAutenticado, setUsuarioAutenticado, modoOscuro, toggleModoOscuro }) => {
   const navigate = useNavigate();
 
-  const handleCerrarSesion = () => {
-    // Si estás usando localStorage o un estado global, resetéalo aquí
-    if (setUsuarioAutenticado) {
-      setUsuarioAutenticado(false);
-    }
+  const handleLogout = () => {
     localStorage.removeItem('usuario');
-    navigate('/login');
+    if (setUsuarioAutenticado) setUsuarioAutenticado(false);
+    navigate('/');
   };
 
   return (
     <nav style={{
-      backgroundColor: '#1c1917',
-      borderBottom: '1px solid #38332e',
-      padding: '1rem 2rem',
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      position: 'sticky',
-      top: 0,
-      zIndex: 1000
+      padding: '0.8rem 2rem',
+      backgroundColor: modoOscuro ? '#1e293b' : '#1e3a8a',
+      color: '#ffffff',
+      boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+      transition: 'background-color 0.3s ease'
     }}>
-      {/* Logo */}
-      <Link to="/" style={{ color: '#c68b59', fontSize: '1.4rem', fontWeight: 800, textDecoration: 'none' }}>
-        🐾 Clínica Veterinaria
-      </Link>
-
-      {/* Menú de Navegación */}
-      <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-        <Link to="/" style={{ color: '#e5e7eb', textDecoration: 'none', fontWeight: 500 }}>
-          Inicio
+      <div style={{ fontWeight: 700, fontSize: '1.2rem' }}>
+        <Link to="/" style={{ color: '#ffffff', textDecoration: 'none' }}>
+          VetSM
         </Link>
-        
-        <Link to="/citas" style={{ color: '#e5e7eb', textDecoration: 'none', fontWeight: 500 }}>
-          Agendar Cita
-        </Link>
+      </div>
 
-        {/* RUTAS PRIVADAS: Solo se muestran si la sesión está iniciada */}
+      <div style={{ display: 'flex', gap: '1.2rem', alignItems: 'center' }}>
+        <Link to="/" style={{ color: '#ffffff', textDecoration: 'none' }}>Inicio</Link>
+        <Link to="/nosotros" style={{ color: '#ffffff', textDecoration: 'none' }}>Nosotros</Link>
+
+        {usuarioAutenticado && (
+          <>
+            <Link to="/mismascotas" style={{ color: '#ffffff', textDecoration: 'none' }}>Mis Mascotas</Link>
+            <Link to="/citas" style={{ color: '#ffffff', textDecoration: 'none' }}>Agendar Cita</Link>
+          </>
+        )}
+
+        {/* Botón de Conmutación de Modo Oscuro */}
+        <button
+          onClick={toggleModoOscuro}
+          title="Cambiar Modo Oscuro / Claro"
+          style={{
+            background: 'transparent',
+            border: '1px solid rgba(255, 255, 255, 0.3)',
+            color: '#ffffff',
+            padding: '0.35rem 0.6rem',
+            borderRadius: '20px',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            fontSize: '1rem'
+          }}
+        >
+          {modoOscuro ? '☀️' : '🌙'}
+        </button>
+
         {usuarioAutenticado ? (
-          <>
-            <Link to="/mismascotas" style={{ color: '#c68b59', textDecoration: 'none', fontWeight: 600 }}>
-              🐾 Mis Mascotas
-            </Link>
-
-            <Link to="/fichaclinica" style={{ color: '#c68b59', textDecoration: 'none', fontWeight: 600 }}>
-              📋 Ficha Clínica
-            </Link>
-
-            <button
-              onClick={handleCerrarSesion}
-              style={{
-                backgroundColor: 'transparent',
-                border: '1px solid #ef4444',
-                color: '#ef4444',
-                padding: '0.4rem 0.9rem',
-                borderRadius: '8px',
-                cursor: 'pointer',
-                fontWeight: 600,
-                fontSize: '0.85rem'
-              }}
-            >
-              Cerrar Sesión
-            </button>
-          </>
+          <button
+            onClick={handleLogout}
+            style={{
+              backgroundColor: '#dc2626',
+              color: '#ffffff',
+              border: 'none',
+              padding: '0.4rem 0.8rem',
+              borderRadius: '6px',
+              cursor: 'pointer',
+              fontWeight: 600
+            }}
+          >
+            Cerrar Sesión
+          </button>
         ) : (
-          /* Opciones si NO ha iniciado sesión */
-          <>
-            <Link to="/login" style={{ color: '#e5e7eb', textDecoration: 'none', fontWeight: 500 }}>
-              Iniciar Sesión
-            </Link>
-
-            <Link 
-              to="/registro" 
-              style={{ 
-                backgroundColor: '#c68b59', 
-                color: '#ffffff', 
-                padding: '0.5rem 1rem', 
-                borderRadius: '8px', 
-                textDecoration: 'none', 
-                fontWeight: 600 
-              }}
-            >
-              Registrarse
-            </Link>
-          </>
+          <Link
+            to="/login"
+            style={{
+              backgroundColor: '#ffffff',
+              color: '#1e3a8a',
+              padding: '0.4rem 0.9rem',
+              borderRadius: '6px',
+              textDecoration: 'none',
+              fontWeight: 600
+            }}
+          >
+            Iniciar Sesión
+          </Link>
         )}
       </div>
     </nav>
