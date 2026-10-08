@@ -1,54 +1,91 @@
-:root {
-  /* Paleta Tonos Piel y Blanco (Modo Claro) */
-  --bg-primary: #FAF7F2;          /* Blanco cálido / Hueso */
-  --bg-card: #FFFFFF;             /* Blanco puro */
-  --text-color: #4A3E3D;          /* Marrón suave / Oscuro neutro */
-  --accent-skin: #E8C5B0;         /* Tono piel / Rosa pálido */
-  --accent-skin-hover: #D4A890;   /* Tono piel oscuro al hover */
-  --border-color: #E2D7CE;
+/* Layout Principal */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #0b1329;
 }
 
-/* Modo Oscuro */
-body.dark-mode {
-  --bg-primary: #1E1B18;          /* Fondo oscuro cálido */
-  --bg-card: #2B2623;             /* Tarjetas oscuras */
-  --text-color: #F3EAE3;          /* Texto claro */
-  --accent-skin: #C89678;         /* Tono piel adaptado */
-  --accent-skin-hover: #B28062;
-  --border-color: #443B35;
+.main-content {
+  flex: 1;
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-body {
-  background-color: var(--bg-primary);
-  color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s;
-  font-family: Arial, sans-serif;
-}
-
+/* Tarjetas y Contenedores */
 .card {
-  background-color: var(--bg-card) !important;
-  color: var(--text-color) !important;
-  border: 1px solid var(--border-color) !important;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
 }
 
-.form-control, .form-select {
-  background-color: var(--bg-card) !important;
-  color: var(--text-color) !important;
-  border-color: var(--border-color) !important;
+/* Estilos de Formularios en Modo Oscuro */
+input, select, textarea {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border-radius: 6px;
+  border: 1px solid #334155;
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease;
 }
 
-/* Botón estilo Tono Piel */
-.btn-skin {
-  background-color: var(--accent-skin);
-  color: #332722;
+input:focus, select:focus, textarea:focus {
+  border-color: #38bdf8;
+}
+
+/* Botones */
+.btn-primary {
+  background-color: #0284c7;
+  color: #ffffff;
   border: none;
+  padding: 0.65rem 1.25rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.btn-skin:hover {
-  background-color: var(--accent-skin-hover);
-  color: #1F1714;
+.btn-primary:hover {
+  background-color: #0369a1;
 }
 
-.text-primary-custom {
-  color: #A36B51;
+/* Tablas Responsivas */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  background-color: #1e293b;
+  border-radius: 12px;
+  border: 1px solid #334155;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th {
+  background-color: #0f172a;
+  color: #94a3b8;
+  padding: 0.85rem 1rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+td {
+  padding: 1rem;
+  border-bottom: 1px solid #334155;
+  color: #e2e8f0;
+}
+
+tr:last-child td {
+  border-bottom: none;
 }
