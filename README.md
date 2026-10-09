@@ -1,40 +1,38 @@
-# 🐾 Veterinaria San Marcos
+# 🐾 VetSM - Plataforma Web Veterinaria San Marcos
 
-Sitio web moderno y responsivo para la clínica **Veterinaria San Marcos** ubicada en Rancagua. Este proyecto incluye una interfaz amigable para el cliente, catálogo de servicios, ubicación interactiva y sistema de autenticación.
-
----
-
-## 🚀 Características Principales
-
-* 📱 **Diseño Responsivo**: Adaptado para dispositivos móviles, tablets y computadoras.
-* 🌙 **Modo Oscuro**: Interruptor de tema claro/oscuro integrado en el menú principal.
-* 🔑 **Autenticación de Usuarios**: Páginas de **Ingresar** (`login.html`) y **Crear cuenta** (`registro.html`).
-* 🗺️ **Mapa Interactivo**: Integración con **Leaflet.js** para ubicar la clínica en Rancagua.
-* 📋 **Gestión de Citas y Servicios**: Vista de precios en formato de tarjetas y formularios para solicitar citas.
+Sistema web frontend desarrollado en React para la gestión integral de citas, mascotas, fichas clínicas y consultas médicas de la clínica veterinaria VetSM.
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+## 🛠️ Tech Stack & Arquitectura Frontend (IE2.1.1 / IE2.1.3)
 
-* **HTML5**: Estructura semántica de todas las páginas.
-* **CSS3**: Estilos personalizados utilizando variables globales y diseño adaptativo.
-* **JavaScript (ES6)**: Lógica interactiva para el mapa y el cambio de tema de modo oscuro.
-* **Leaflet.js**: Librería de mapas interactivos.
+- **Framework principal:** React 18 + Vite (Javascript SPA).
+- **Enrutamiento:** React Router v6 con rutas públicas y privadas (`ProtectedRoute`).
+- **Diseño Responsivo:** Bootstrap 5 (CDN) integrado mediante componentes modulares y clases nativas (`container`, `row`, `col-md-*`, `form-control`, `navbar`).
+- **Gestión de Estado:** `useState` global en `App.jsx` para el manejo centralizado de **Modo Oscuro / Claro** (`darkMode`) y **Autenticación** (`isLoggedIn`).
+- **Validaciones:** Expresiones regulares (Regex) para control de tipos de texto, longitud de números y formato de correo electrónico.
 
 ---
 
-## 📂 Estructura del Proyecto
+## 🔒 Rutas y Control de Acceso
 
-```text
-Veterinaria/
-├── css/
-│   └── style.css
-├── img/
-├── js/
-│   └── main.js
-├── index.html
-├── login.html
-├── registro.html
-├── servicios.html
-├── solicitar-cita.html
-└── README.md
+| Ruta | Acceso | Descripción |
+| :--- | :--- | :--- |
+| `/` | Público | Portada principal, instalaciones, horarios y mapa interactivo. |
+| `/nosotros` | Público | Misión, visión y valores institucionales. |
+| `/servicios` | Público | Listado de atención médica y especialidades. |
+| `/contacto` | Público | Formulario de contacto con validación estricta de inputs. |
+| `/login` | Público | Autenticación tradicional y botones de inicio social (Google / Apple). |
+| `/mascotas` | **Protegido** | Panel privado para visualizar mascotas registradas, vacunas e historial. |
+
+---
+
+## 🧪 Pruebas Unitarias y Cobertura (IE2.2.1 / IE2.3.1 / IE2.3.2)
+
+El proyecto cuenta con un entorno de testing automatizado configurado con **Jasmine** y el ejecutor **Karma**, garantizando la calidad del código mediante pruebas de renderizado y lógica de componentes.
+
+### Ejecución de Pruebas
+Para correr el conjunto de pruebas unitarias y generar el informe de cobertura:
+
+```bash
+npm test
