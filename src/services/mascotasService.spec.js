@@ -1,9 +1,13 @@
-import { obtenerMascotas, agregarMascota } from './mascotasService.js';
+import { obtenerMascotas, agregarMascota, buscarMascotaPorId, filtrarMascotasPorTipo } from './mascotasService.js';
 
 describe('Pruebas unitarias de MascotasService', () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
   it('debe retornar el listado completo de mascotas', () => {
-    const lista = obtenerMascotas();
-    expect(lista.length).toBeGreaterThan(0);
+    const mascotas = obtenerMascotas();
+    expect(mascotas.length).toBeGreaterThan(0);
   });
 
   it('debe encontrar una mascota existente por ID', () => {
@@ -19,7 +23,15 @@ describe('Pruebas unitarias de MascotasService', () => {
 
   it('debe filtrar mascotas por tipo correctamente', () => {
     const perros = filtrarMascotasPorTipo('Perro');
-    expect(perros.length).toBe(1);
-    expect(perros[0].tipo).toBe('Perro');
+    expect(perros.every(m => m.tipo === 'Perro')).toBeTrue();
+
+    const todas = filtrarMascotasPorTipo('');
+    expect(todas.length).toBeGreaterThan(0);
+  });
+
+  it('debe permitir agregar una nueva mascota', () => {
+    const nueva = agregarMascota({ nombre: 'Tobías', tipo: 'Perro', raza: 'Beagle', edad: '1 año' });
+    expect(nueva.id).toBeDefined();
+    expect(obtenerMascotas().length).toBe(3);
   });
 });

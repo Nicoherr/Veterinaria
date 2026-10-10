@@ -30,9 +30,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>7/14</span>
+                <span class='fraction'>14/14</span>
             </div>
         
             
@@ -139,15 +139,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -212,11 +212,11 @@ import { Link } from 'react-router-dom';
 &nbsp;
 export default function Home({ darkMode }) {
   const heroClass = darkMode
-    ? <span class="branch-0 cbranch-no" title="branch not covered" >'bg-dark text-white border border-secondary shadow'</span>
+    ? 'bg-dark text-white border border-secondary shadow'
     : 'bg-primary-subtle text-dark border border-primary-subtle shadow-sm';
 &nbsp;
   const cardClass = darkMode 
-    ? <span class="branch-0 cbranch-no" title="branch not covered" >'bg-dark text-white border-secondary h-100 shadow-sm' </span>
+    ? 'bg-dark text-white border-secondary h-100 shadow-sm' 
     : 'bg-white text-dark border-light-subtle h-100 shadow-sm';
 &nbsp;
   return (
@@ -225,14 +225,14 @@ export default function Home({ darkMode }) {
       &lt;div className={`p-5 mb-5 rounded-4 text-center ${heroClass}`}&gt;
         &lt;div className="container-fluid py-3"&gt;
           &lt;h1 className="display-4 fw-bold text-primary mb-3"&gt;🐾 Bienvenidos a VetSM&lt;/h1&gt;
-          &lt;p className={`col-md-8 fs-5 mx-auto ${darkMode ? <span class="branch-0 cbranch-no" title="branch not covered" >'text-light-50' </span>: 'text-secondary'}`}&gt;
+          &lt;p className={`col-md-8 fs-5 mx-auto ${darkMode ? 'text-light-50' : 'text-secondary'}`}&gt;
             Atención veterinaria integral con los estándares médicos más altos. Cuidamos a tus compañeros de vida con vocación, tecnología y amor.
           &lt;/p&gt;
           &lt;div className="d-flex justify-content-center gap-3 mt-4"&gt;
             &lt;Link to="/contacto" className="btn btn-primary btn-lg fw-bold px-4 shadow-sm"&gt;
               📅 Agendar Consulta
             &lt;/Link&gt;
-            &lt;Link to="/servicios" className={`btn ${darkMode ? <span class="branch-0 cbranch-no" title="branch not covered" >'btn-outline-light' </span>: 'btn-outline-primary'} btn-lg fw-bold px-4`}&gt;
+            &lt;Link to="/servicios" className={`btn ${darkMode ? 'btn-outline-light' : 'btn-outline-primary'} btn-lg fw-bold px-4`}&gt;
               Ver Servicios
             &lt;/Link&gt;
           &lt;/div&gt;
@@ -246,7 +246,7 @@ export default function Home({ darkMode }) {
             &lt;div className="card-body text-center p-4"&gt;
               &lt;div className="fs-1 mb-2"&gt;🩺&lt;/div&gt;
               &lt;h3 className="card-title h5 fw-bold"&gt;Atención Médica 24/7&lt;/h3&gt;
-              &lt;p className={darkMode ? <span class="branch-0 cbranch-no" title="branch not covered" >'text-light-50' </span>: 'text-secondary'}&gt;
+              &lt;p className={darkMode ? 'text-light-50' : 'text-secondary'}&gt;
                 Equipo de urgencia preparado para cualquier imprevisto clínico de tu mascota.
               &lt;/p&gt;
             &lt;/div&gt;
@@ -258,7 +258,7 @@ export default function Home({ darkMode }) {
             &lt;div className="card-body text-center p-4"&gt;
               &lt;div className="fs-1 mb-2"&gt;🧪&lt;/div&gt;
               &lt;h3 className="card-title h5 fw-bold"&gt;Laboratorio e Imagenología&lt;/h3&gt;
-              &lt;p className={darkMode ? <span class="branch-0 cbranch-no" title="branch not covered" >'text-light-50' </span>: 'text-secondary'}&gt;
+              &lt;p className={darkMode ? 'text-light-50' : 'text-secondary'}&gt;
                 Exámenes de sangre, radiografías y ecografías con resultados inmediatos.
               &lt;/p&gt;
             &lt;/div&gt;
@@ -270,7 +270,7 @@ export default function Home({ darkMode }) {
             &lt;div className="card-body text-center p-4"&gt;
               &lt;div className="fs-1 mb-2"&gt;💉&lt;/div&gt;
               &lt;h3 className="card-title h5 fw-bold"&gt;Vacunación y Fichas&lt;/h3&gt;
-              &lt;p className={darkMode ? <span class="branch-0 cbranch-no" title="branch not covered" >'text-light-50' </span>: 'text-secondary'}&gt;
+              &lt;p className={darkMode ? 'text-light-50' : 'text-secondary'}&gt;
                 Control digitalizado de vacunas, desparasitaciones e historial clínico.
               &lt;/p&gt;
             &lt;/div&gt;
@@ -286,7 +286,7 @@ export default function Home({ darkMode }) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-10-10T03:00:54.368Z
+                at 2026-10-10T03:11:47.380Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -44,7 +44,7 @@ export function agregarMascota(nuevaMascota) {
     id: Date.now(),
     vacunas: nuevaMascota.vacunas || ['Pendiente registro'],
     historial: nuevaMascota.historial || [{ fecha: new Date().toLocaleDateString('es-CL'), detalle: 'Registro inicial de la mascota' }],
-    imagen: nuevaMascota.imagen || (nuevaMascota.tipo.toLowerCase() === 'gato' 
+    imagen: nuevaMascota.imagen || (nuevaMascota.tipo?.toLowerCase() === 'gato' 
       ? 'https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=400&q=80' 
       : 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=400&q=80')
   };

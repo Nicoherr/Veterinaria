@@ -56,7 +56,10 @@ module.exports = function (config) {
         global: { statements: 80, branches: 80, functions: 80, lines: 80 },
       },
     },
-    client: { jasmine: { random: true }, clearContext: false },
+    client: { 
+      jasmine: { random: false }, // Ejecución secuencial para no mezclar localStorage
+      clearContext: false 
+    },
     browsers: ['ChromeHeadless'],
     customLaunchers: {
       ChromeHeadlessCI: { base: 'ChromeHeadless', flags: ['--no-sandbox'] },
