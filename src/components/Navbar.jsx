@@ -1,77 +1,65 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
-export default function Navbar({ darkMode, toggleDarkMode, isLoggedIn, setIsLoggedIn }) {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    navigate('/');
-  };
-
+export default function Navbar({ darkMode, toggleDarkMode, isLoggedIn, logout }) {
   return (
-    <nav className={`navbar navbar-expand-lg sticky-top shadow-sm ${darkMode ? 'navbar-dark bg-dark border-bottom border-secondary' : 'navbar-light bg-light border-bottom'}`}>
+    <nav className={`navbar navbar-expand-lg ${darkMode ? 'navbar-dark bg-dark border-bottom border-secondary' : 'navbar-light bg-white border-bottom shadow-sm'}`}>
       <div className="container">
-        {/* LOGO */}
-        <Link className="navbar-brand fw-bold text-primary" to="/">
+        <Link className="navbar-brand fw-bold text-primary fs-4" to="/">
           🐾 VetSM
         </Link>
 
-        {/* BOTÓN HAMBURGUESA MOBILE */}
-        <button 
-          className="navbar-toggler" 
-          type="button" 
-          data-bs-toggle="collapse" 
-          data-bs-target="#navbarVetSM" 
-          aria-controls="navbarVetSM" 
-          aria-expanded="false" 
-          aria-label="Toggle navigation"
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* ENLACES Y ACCIONES */}
-        <div className="collapse navbar-collapse" id="navbarVetSM">
+        <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link" to="/">Inicio</Link>
+              <NavLink className="nav-link" to="/">Inicio</NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/nosotros">Nosotros</Link>
+              <NavLink className="nav-link" to="/nosotros">Nosotros</NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/servicios">Servicios</Link>
+              <NavLink className="nav-link" to="/servicios">Servicios</NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/contacto">Contacto</Link>
+              <NavLink className="nav-link" to="/contacto">Contacto</NavLink>
             </li>
+
             {isLoggedIn && (
-              <li className="nav-item">
-                <Link className="nav-link fw-bold text-info" to="/mascotas">
-                  🐾 Mis Mascotas
-                </Link>
-              </li>
+              <>
+                <li className="nav-item">
+                  <NavLink className="nav-link fw-semibold" to="/mascotas">🐾 Mis Mascotas</NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link fw-semibold" to="/perfil">👤 Mis Datos</NavLink>
+                </li>
+              </>
             )}
           </ul>
 
           <div className="d-flex align-items-center gap-3">
-            {/* Botón Modo Oscuro/Claro */}
             <button
               onClick={toggleDarkMode}
-              className={`btn btn-sm rounded-circle ${darkMode ? 'btn-outline-light' : 'btn-outline-dark'}`}
-              style={{ width: '38px', height: '38px' }}
-              title="Alternar Modo Oscuro/Claro"
+              className={`btn btn-sm ${darkMode ? 'btn-outline-light' : 'btn-outline-dark'} rounded-circle`}
+              title="Cambiar Modo"
             >
-              {darkMode ? '🌙' : '☀️'}
+              {darkMode ? '☀️' : '🌙'}
             </button>
 
-            {/* Sesión */}
             {isLoggedIn ? (
-              <button onClick={handleLogout} className="btn btn-danger btn-sm fw-semibold">
+              <button onClick={logout} className="btn btn-danger btn-sm fw-bold">
                 Cerrar Sesión
               </button>
             ) : (
-              <Link to="/login" className="btn btn-primary btn-sm fw-semibold">
+              <Link to="/login" className="btn btn-primary btn-sm fw-bold">
                 Iniciar Sesión
               </Link>
             )}
